@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+
+  /* Custom Palette from ui-reference.md */
+  --color-pivotal-bg-top: #3B699A;
+  --color-pivotal-bg-bottom: #244C7A;
+  --color-pivotal-accent: #E55F2F;
+  --color-pivotal-accent-secondary: rgba(255, 255, 255, 0.2);
+  --color-pivotal-text-primary: #FFFFFF;
+  --color-pivotal-text-secondary: #E0E0E0;
+  --color-pivotal-text-muted: rgba(255, 255, 255, 0.85);
+  --color-pivotal-surface-nav: rgba(42, 59, 76, 0.85);
+  --color-pivotal-surface-card: rgba(255, 255, 255, 0.05);
+}
+
+/* ─── BASE RESETS ─── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-pivotal-bg-bottom);
+  color: var(--color-pivotal-text-primary);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--color-pivotal-bg-top) 0%, var(--color-pivotal-bg-bottom) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-pivotal-accent);
+  color: #fff;
+}
+
+/* ─── TYPOGRAPHY CLASSES ─── */
+.h1-hero {
+  font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.h2-section {
+  font-size: clamp(1.75rem, 4vw + 1rem, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.text-standard {
+  font-size: clamp(1.05rem, 1.4vw + 0.5rem, 1.25rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.text-label {
+  font-size: clamp(0.8rem, 0.9vw + 0.3rem, 0.9rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── GLASSMORPHIC CARD ─── */
+.glass-card {
+  background: var(--color-pivotal-surface-card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: clamp(2rem, 4vw, 3rem);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* ─── BUTTONS ─── */
+.btn-primary {
+  background: #FFFFFF;
+  color: var(--color-pivotal-bg-bottom);
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 700;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: #FFFFFF;
+  color: var(--color-pivotal-bg-bottom);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+
+.btn-ghost:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ─── INPUTS ─── */
+.glass-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--color-pivotal-accent);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(229, 95, 47, 0.2), inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ─── OPTION HOVER ─── */
+.option-block {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: 16px;
+  background: var(--color-pivotal-surface-card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.option-block:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.option-block:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── FADE IN / ANIMATION ─── */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: slide-up-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── LOADING SPINNER ─── */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--color-pivotal-accent);
+  border-radius: 50%;
+  animation: spin 0.8s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+}
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--color-pivotal-accent);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ─── TEXT GRADIENT ─── */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--color-pivotal-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── SLOW BOUNCE ─── */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* ─── LINK RESET ─── */
+a.no-underline {
+  text-decoration: none;
+}
+
+/* ─── STAGGERED FADE IN FOR FEATURE CARDS ─── */
+.glass-card {
+  opacity: 0;
+  animation: slide-up-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
